@@ -3,28 +3,104 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>スポーティなデザイン</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>自己紹介</title>
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Russo One', sans-serif;
+      background-color: #000;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .skidmark {
+      position: absolute;
+      width: 200%;
+      height: 100px;
+      background: linear-gradient(to right, #444 25%, transparent 25%, transparent 75%, #444 75%);
+      background-size: 40px 100px;
+      opacity: 0.2;
+      transform: rotate(-20deg);
+    }
+
+    .skidmark:nth-child(1) {
+      top: 50px;
+      left: -50%;
+    }
+    .skidmark:nth-child(2) {
+      top: 200px;
+      left: -40%;
+      transform: rotate(-15deg);
+    }
+    .skidmark:nth-child(3) {
+      top: 350px;
+      left: -60%;
+      transform: rotate(-25deg);
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      padding: 100px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: 48px;
+      color: #ff3c00;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .photo-slot {
+      margin: 40px 0;
+      border: 2px dashed #888;
+      width: 100%;
+      height: 250px;
+      background-color: #111;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #555;
+      font-size: 18px;
+    }
+  </style>
 </head>
 <body>
-  <header class="hero">
-    <h1 class="title">Drive Your Passion</h1>
-  </header>
-  <main>
-    <section class="content">
-      <div class="text">
-        <h2>スピードの世界へようこそ</h2>
-        <p>タイヤの跡と煙が織りなすダイナミックな世界を体験してください。</p>
-      </div>
-      <div class="image"></div>
-    </section>
-    <section class="content">
-      <div class="text">
-        <h2>赤いラインでアクセント</h2>
-        <p>精巧なデザインの中に情熱を表現する赤い斜線。</p>
-      </div>
-      <div class="image"></div>
-    </section>
-  </main>
+  <div class="skidmark"></div>
+  <div class="skidmark"></div>
+  <div class="skidmark"></div>
+
+  <div class="container">
+    <h1>ようこそ、俺の世界へ</h1>
+    <p>
+      スピードと情熱を愛するクリエイター、◯◯です。<br>
+      革新的なアイデアと、止まらない好奇心で、日々新しいものを追い求めています。<br>
+      このページは、そんな俺の自己紹介だ。
+    </p>
+
+    <div class="photo-slot">[写真スペース1]</div>
+
+    <p>
+      得意なことは、デザインとプログラミングの融合。<br>
+      黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
+      常識をぶち壊し、道なき道を走るのが俺のスタイル。
+    </p>
+
+    <div class="photo-slot">[写真スペース2]</div>
+
+    <p>
+      この先どんな未来が待っていても、<br>
+      ブレーキは踏まない。アクセル全開で駆け抜けていく。
+    </p>
+
+    <div class="photo-slot">[写真スペース3]</div>
+  </div>
 </body>
 </html>
