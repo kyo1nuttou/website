@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>自己紹介</title>
-  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet" />
   <style>
     body {
       margin: 0;
@@ -16,10 +16,8 @@
 
     .red-lines {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: 0;
       pointer-events: none;
     }
@@ -49,44 +47,10 @@
       position: relative;
     }
 
-    .section::before {
-      content: '';
-      position: absolute;
-      right: -60px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100px;
-      height: 100px;
-      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
-      opacity: 0;
-      filter: blur(15px);
-      animation: smoke 2.5s ease-out forwards;
-      animation-delay: var(--delay, 0s);
-    }
-
     @keyframes fadeInRight {
-      0% {
-        opacity: 0;
-        transform: translateX(150px);
-      }
-      70% {
-        opacity: 1;
-        transform: translateX(-10px);
-      }
-      100% {
-        transform: translateX(0);
-      }
-    }
-
-    @keyframes smoke {
-      0% {
-        opacity: 0;
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        opacity: 0.2;
-        transform: translateY(-40px) scale(1.6);
-      }
+      0% { opacity: 0; transform: translateX(150px); }
+      70% { opacity: 1; transform: translateX(-10px); }
+      100% { transform: translateX(0); }
     }
 
     h1 {
@@ -127,7 +91,7 @@
   </style>
 </head>
 <body>
-  <audio id="brake-sound" src="https://cdn.pixabay.com/audio/2021/09/08/audio_461abbf861.mp3" preload="auto"></audio>
+  <audio id="brake-sound" src="Car Brake Sound 2.mp3" preload="auto"></audio>
 
   <div class="red-lines">
     <div class="red-line" style="top:10%; transform: rotate(25deg);"></div>
@@ -140,7 +104,7 @@
   </div>
 
   <div class="container">
-    <div class="section" style="--delay: 0s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 0s">
       <h1>ようこそ、俺の世界へ</h1>
       <p>
         スピードと情熱を愛するクリエイター、◯◯です。<br>
@@ -149,13 +113,13 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 0.5s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 0.5s">
       <div class="photo-slot">
         <img src="画像のURL1.jpg" alt="写真1">
       </div>
     </div>
 
-    <div class="section" style="--delay: 1s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 1s">
       <p>
         得意なことは、デザインとプログラミングの融合。<br>
         黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
@@ -163,20 +127,20 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 1.5s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 1.5s">
       <div class="photo-slot">
         <img src="画像のURL2.jpg" alt="写真2">
       </div>
     </div>
 
-    <div class="section" style="--delay: 2s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 2s">
       <p>
         この先どんな未来が待っていても、<br>
         ブレーキは踏まない。アクセル全開で駆け抜けていく。
       </p>
     </div>
 
-    <div class="section" style="--delay: 2.5s" onanimationstart="playBrakeSound()">
+    <div class="section" style="--delay: 2.5s">
       <div class="photo-slot">
         <img src="画像のURL3.jpg" alt="写真3">
       </div>
@@ -188,11 +152,25 @@
   </div>
 
   <script>
-    function playBrakeSound() {
-      const sound = document.getElementById('brake-sound');
-      sound.currentTime = 0;
-      sound.play();
-    }
+    const sound = document.getElementById('brake-sound');
+
+    let soundEnabled = false;
+
+    document.body.addEventListener('click', () => {
+      if (!soundEnabled) {
+        soundEnabled = true;
+
+        document.querySelectorAll('.section').forEach((section, i) => {
+          const delay = i * 500;
+          setTimeout(() => {
+            section.style.opacity = '1';
+            section.style.transform = 'translateX(0)';
+            sound.currentTime = 0;
+            sound.play();
+          }, delay);
+        });
+      }
+    }, { once: true });
   </script>
 </body>
 </html>
