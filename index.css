@@ -1,87 +1,70 @@
-
 /* 全体のスタイル */
 body {
   margin: 0;
   padding: 0;
-  background-color: #000; /* 黒を基調 */
-  color: white;
-  font-family: 'Arial', sans-serif; /* スポーティな感じのフォント */
-  overflow-x: hidden; /* アニメーションで横スクロールを防ぐ */
+  font-family: 'Roboto', sans-serif; /* スポーティなフォント */
+  background-color: #000;
+  color: #fff;
+  overflow-x: hidden;
 }
 
-/* ヘッダーセクション */
-.header {
-  text-align: center;
-  padding: 20px;
-  border-bottom: 4px solid red; /* 赤のライン */
-}
-
-.animated-title {
-  font-size: 3em;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  animation: slideInSmoke 3s ease; /* アニメーション */
-}
-
-/* メインセクション */
-.main {
+.hero {
+  height: 100vh;
+  background: linear-gradient(to bottom, #000, #222);
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  padding: 20px;
-}
-
-.photo-section {
-  margin-bottom: 30px;
-}
-
-.profile-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  border: 4px solid red; /* 赤のライン */
-  box-shadow: 0 0 20px red;
-}
-
-.intro-section {
   text-align: center;
+  position: relative;
 }
 
-.intro-section h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
+.title {
+  font-size: 3rem;
+  text-transform: uppercase;
+  color: red;
+  letter-spacing: 2px;
+  position: relative;
 }
 
-.intro-section p {
-  font-size: 1.2em;
-  margin-bottom: 10px;
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px;
+  border-bottom: 1px solid #333;
+  background: url('road_texture.jpg') no-repeat center center;
+  background-size: cover;
+  position: relative;
 }
 
-/* フッターセクション */
-.footer {
-  text-align: center;
-  padding: 10px;
-  border-top: 4px solid red; /* 赤のライン */
-  margin-top: 20px;
+.content .text {
+  flex: 1;
+  padding-right: 20px;
+  opacity: 0;
+  transform: translateX(100px);
+  animation: slide-in 1s ease-out forwards;
 }
 
-/* アニメーション */
-@keyframes slideInSmoke {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-    text-shadow: 0 0 10px red, 0 0 20px black;
-  }
-  50% {
+.content .image {
+  flex: 1;
+  background: url('tire_tracks.jpg') no-repeat center center;
+  background-size: cover;
+  height: 300px;
+  opacity: 0;
+  transform: translateX(-100px);
+  animation: slide-in-left 1s ease-out forwards;
+}
+
+@keyframes slide-in {
+  to {
     opacity: 1;
-    text-shadow: 0 0 20px red, 0 0 30px red;
-  }
-  100% {
     transform: translateX(0);
   }
 }
 
-/* スポーティな装飾 */
-h1, h2 {
-  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px black;
+@keyframes slide-in-left {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
