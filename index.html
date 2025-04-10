@@ -14,29 +14,43 @@
       overflow-x: hidden;
     }
 
-    .skidmark {
-      position: absolute;
-      width: 200%;
-      height: 100px;
-      background: linear-gradient(to right, #444 25%, transparent 25%, transparent 75%, #444 75%);
-      background-size: 40px 100px;
-      opacity: 0.2;
-      transform: rotate(-20deg);
+    .red-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    .skidmark:nth-child(1) {
-      top: 50px;
-      left: -50%;
+    .red-line::before,
+    .red-line::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 100%;
+      background: red;
+      animation: moveLines 10s linear infinite;
     }
-    .skidmark:nth-child(2) {
-      top: 200px;
-      left: -40%;
-      transform: rotate(-15deg);
+
+    .red-line::after {
+      width: 100%;
+      height: 2px;
+      background: red;
+      top: 0;
+      left: 0;
+      animation: moveLinesX 10s linear infinite;
     }
-    .skidmark:nth-child(3) {
-      top: 350px;
-      left: -60%;
-      transform: rotate(-25deg);
+
+    @keyframes moveLines {
+      0% { left: 0; }
+      100% { left: 100%; }
+    }
+
+    @keyframes moveLinesX {
+      0% { top: 0; }
+      100% { top: 100%; }
     }
 
     .container {
@@ -45,6 +59,41 @@
       padding: 100px 20px;
       max-width: 800px;
       margin: 0 auto;
+    }
+
+    .section {
+      opacity: 0;
+      transform: translateX(100px);
+      animation: fadeInRight 1s forwards;
+      animation-delay: var(--delay, 0s);
+      position: relative;
+    }
+
+    .section::before {
+      content: '';
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(0,0,0,0) 80%);
+      opacity: 0.5;
+      filter: blur(20px);
+      animation: smoke 1s ease-out forwards;
+      animation-delay: var(--delay, 0s);
+    }
+
+    @keyframes fadeInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes smoke {
+      0% { opacity: 0; transform: translateY(0) scale(1); }
+      100% { opacity: 0.1; transform: translateY(-30px) scale(1.5); }
     }
 
     h1 {
@@ -73,34 +122,43 @@
   </style>
 </head>
 <body>
-  <div class="skidmark"></div>
-  <div class="skidmark"></div>
-  <div class="skidmark"></div>
-
+  <div class="red-line"></div>
   <div class="container">
-    <h1>ようこそ、俺の世界へ</h1>
-    <p>
-      スピードと情熱を愛するクリエイター、◯◯です。<br>
-      革新的なアイデアと、止まらない好奇心で、日々新しいものを追い求めています。<br>
-      このページは、そんな俺の自己紹介だ。
-    </p>
+    <div class="section" style="--delay: 0s">
+      <h1>ようこそ、俺の世界へ</h1>
+      <p>
+        スピードと情熱を愛するクリエイター、◯◯です。<br>
+        革新的なアイデアと、止まらない好奇心で、日々新しいものを追い求めています。<br>
+        このページは、そんな俺の自己紹介だ。
+      </p>
+    </div>
 
-    <div class="photo-slot">[写真スペース1]</div>
+    <div class="section" style="--delay: 0.5s">
+      <div class="photo-slot">[写真スペース1]</div>
+    </div>
 
-    <p>
-      得意なことは、デザインとプログラミングの融合。<br>
-      黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
-      常識をぶち壊し、道なき道を走るのが俺のスタイル。
-    </p>
+    <div class="section" style="--delay: 1s">
+      <p>
+        得意なことは、デザインとプログラミングの融合。<br>
+        黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
+        常識をぶち壊し、道なき道を走るのが俺のスタイル。
+      </p>
+    </div>
 
-    <div class="photo-slot">[写真スペース2]</div>
+    <div class="section" style="--delay: 1.5s">
+      <div class="photo-slot">[写真スペース2]</div>
+    </div>
 
-    <p>
-      この先どんな未来が待っていても、<br>
-      ブレーキは踏まない。アクセル全開で駆け抜けていく。
-    </p>
+    <div class="section" style="--delay: 2s">
+      <p>
+        この先どんな未来が待っていても、<br>
+        ブレーキは踏まない。アクセル全開で駆け抜けていく。
+      </p>
+    </div>
 
-    <div class="photo-slot">[写真スペース3]</div>
+    <div class="section" style="--delay: 2.5s">
+      <div class="photo-slot">[写真スペース3]</div>
+    </div>
   </div>
 </body>
 </html>
