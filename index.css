@@ -1,26 +1,87 @@
+
+/* 全体のスタイル */
 body {
-  font-family: sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #000; /* 黒を基調 */
+  color: white;
+  font-family: 'Arial', sans-serif; /* スポーティな感じのフォント */
+  overflow-x: hidden; /* アニメーションで横スクロールを防ぐ */
 }
+
+/* ヘッダーセクション */
 .header {
-  background-color: white;
-  padding: 0 .5em;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 4px solid red; /* 赤のライン */
 }
-.footer {
-  background-color: white;
-  padding: 0 .5em;
+
+.animated-title {
+  font-size: 3em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  animation: slideInSmoke 3s ease; /* アニメーション */
 }
+
+/* メインセクション */
 .main {
-  background-color: #fff8d8;
-  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
-h1 {
-  font-size: 150%;
-  margin: 0 0;
-  padding: .5em 0;
+
+.photo-section {
+  margin-bottom: 30px;
 }
-div {
-  padding: 0vw 0vh;
-  margin: 0vw 0vh;
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 4px solid red; /* 赤のライン */
+  box-shadow: 0 0 20px red;
+}
+
+.intro-section {
+  text-align: center;
+}
+
+.intro-section h2 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.intro-section p {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+}
+
+/* フッターセクション */
+.footer {
+  text-align: center;
+  padding: 10px;
+  border-top: 4px solid red; /* 赤のライン */
+  margin-top: 20px;
+}
+
+/* アニメーション */
+@keyframes slideInSmoke {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+    text-shadow: 0 0 10px red, 0 0 20px black;
+  }
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 20px red, 0 0 30px red;
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+/* スポーティな装飾 */
+h1, h2 {
+  text-shadow: 0 0 10px red, 0 0 20px red, 0 0 30px black;
 }
