@@ -14,43 +14,23 @@
       overflow-x: hidden;
     }
 
-    .red-line {
+    .red-lines {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      pointer-events: none;
       z-index: 0;
+      pointer-events: none;
     }
 
-    .red-line::before,
-    .red-line::after {
-      content: '';
+    .red-line {
       position: absolute;
-      width: 2px;
-      height: 100%;
-      background: red;
-      animation: moveLines 10s linear infinite;
-    }
-
-    .red-line::after {
-      width: 100%;
+      width: 200%;
       height: 2px;
       background: red;
-      top: 0;
-      left: 0;
-      animation: moveLinesX 10s linear infinite;
-    }
-
-    @keyframes moveLines {
-      0% { left: 0; }
-      100% { left: 100%; }
-    }
-
-    @keyframes moveLinesX {
-      0% { top: 0; }
-      100% { top: 100%; }
+      opacity: 0.6;
+      transform-origin: center;
     }
 
     .container {
@@ -64,7 +44,7 @@
     .section {
       opacity: 0;
       transform: translateX(150px);
-      animation: fadeInRight 2s cubic-bezier(0.15, 0.85, 0.3, 1.2) forwards;
+      animation: fadeInRight 2.5s ease-out forwards;
       animation-delay: var(--delay, 0s);
       position: relative;
     }
@@ -80,7 +60,7 @@
       background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 70%);
       opacity: 0;
       filter: blur(15px);
-      animation: smoke 2s ease-out forwards;
+      animation: smoke 2.5s ease-out forwards;
       animation-delay: var(--delay, 0s);
     }
 
@@ -129,17 +109,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #555;
-      font-size: 18px;
+    }
+
+    .photo-slot img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
     }
   </style>
 </head>
 <body>
   <audio id="brake-sound" src="https://cdn.pixabay.com/audio/2021/09/08/audio_461abbf861.mp3" preload="auto"></audio>
 
-  <div class="red-line"></div>
+  <div class="red-lines">
+    <div class="red-line" style="top:10%; transform: rotate(25deg);"></div>
+    <div class="red-line" style="top:20%; transform: rotate(-30deg);"></div>
+    <div class="red-line" style="top:35%; transform: rotate(15deg);"></div>
+    <div class="red-line" style="top:50%; transform: rotate(-20deg);"></div>
+    <div class="red-line" style="top:60%; transform: rotate(30deg);"></div>
+    <div class="red-line" style="top:75%; transform: rotate(-25deg);"></div>
+    <div class="red-line" style="top:85%; transform: rotate(10deg);"></div>
+  </div>
+
   <div class="container">
-    <div class="section" style="--delay: 0s" onanimationstart="document.getElementById('brake-sound').play()">
+    <div class="section" style="--delay: 0s" onanimationstart="playBrakeSound()">
       <h1>ようこそ、俺の世界へ</h1>
       <p>
         スピードと情熱を愛するクリエイター、◯◯です。<br>
@@ -148,11 +141,13 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 0.5s" onanimationstart="document.getElementById('brake-sound').play()">
-      <div class="photo-slot">[写真スペース1]</div>
+    <div class="section" style="--delay: 0.5s" onanimationstart="playBrakeSound()">
+      <div class="photo-slot">
+        <img src="画像のURL1.jpg" alt="写真1">
+      </div>
     </div>
 
-    <div class="section" style="--delay: 1s" onanimationstart="document.getElementById('brake-sound').play()">
+    <div class="section" style="--delay: 1s" onanimationstart="playBrakeSound()">
       <p>
         得意なことは、デザインとプログラミングの融合。<br>
         黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
@@ -160,20 +155,32 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 1.5s" onanimationstart="document.getElementById('brake-sound').play()">
-      <div class="photo-slot">[写真スペース2]</div>
+    <div class="section" style="--delay: 1.5s" onanimationstart="playBrakeSound()">
+      <div class="photo-slot">
+        <img src="画像のURL2.jpg" alt="写真2">
+      </div>
     </div>
 
-    <div class="section" style="--delay: 2s" onanimationstart="document.getElementById('brake-sound').play()">
+    <div class="section" style="--delay: 2s" onanimationstart="playBrakeSound()">
       <p>
         この先どんな未来が待っていても、<br>
         ブレーキは踏まない。アクセル全開で駆け抜けていく。
       </p>
     </div>
 
-    <div class="section" style="--delay: 2.5s" onanimationstart="document.getElementById('brake-sound').play()">
-      <div class="photo-slot">[写真スペース3]</div>
+    <div class="section" style="--delay: 2.5s" onanimationstart="playBrakeSound()">
+      <div class="photo-slot">
+        <img src="画像のURL3.jpg" alt="写真3">
+      </div>
     </div>
   </div>
+
+  <script>
+    function playBrakeSound() {
+      const sound = document.getElementById('brake-sound');
+      sound.currentTime = 0;
+      sound.play();
+    }
+  </script>
 </body>
 </html>
