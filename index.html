@@ -50,7 +50,7 @@
     @keyframes fadeInRight {
       0% { opacity: 0; transform: translateX(150px); }
       70% { opacity: 1; transform: translateX(-10px); }
-      100% { transform: translateX(0); }
+      100% { opacity: 1; transform: translateX(0); }
     }
 
     h1 {
@@ -91,8 +91,6 @@
   </style>
 </head>
 <body>
-  <audio id="brake-sound" src="Car Brake Sound 2.mp3" preload="auto"></audio>
-
   <div class="red-lines">
     <div class="red-line" style="top:10%; transform: rotate(25deg);"></div>
     <div class="red-line" style="top:20%; transform: rotate(-30deg);"></div>
@@ -150,27 +148,5 @@
       "アクセルを踏み続けた者にしか、見えない景色がある。"
     </div>
   </div>
-
-  <script>
-    const sound = document.getElementById('brake-sound');
-
-    let soundEnabled = false;
-
-    document.body.addEventListener('click', () => {
-      if (!soundEnabled) {
-        soundEnabled = true;
-
-        document.querySelectorAll('.section').forEach((section, i) => {
-          const delay = i * 500;
-          setTimeout(() => {
-            section.style.opacity = '1';
-            section.style.transform = 'translateX(0)';
-            sound.currentTime = 0;
-            sound.play();
-          }, delay);
-        });
-      }
-    }, { once: true });
-  </script>
 </body>
 </html>
