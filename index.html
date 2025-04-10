@@ -42,15 +42,12 @@
     .section {
       opacity: 0;
       transform: translateX(150px);
-      animation: fadeInRight 2.5s ease-out forwards;
-      animation-delay: var(--delay, 0s);
-      position: relative;
+      transition: all 1s ease-out;
     }
 
-    @keyframes fadeInRight {
-      0% { opacity: 0; transform: translateX(150px); }
-      70% { opacity: 1; transform: translateX(-10px); }
-      100% { opacity: 1; transform: translateX(0); }
+    .section.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     h1 {
@@ -102,7 +99,7 @@
   </div>
 
   <div class="container">
-    <div class="section" style="--delay: 0s">
+    <div class="section">
       <h1>ようこそ、俺の世界へ</h1>
       <p>
         スピードと情熱を愛するクリエイター、◯◯です。<br>
@@ -111,13 +108,13 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 0.5s">
+    <div class="section">
       <div class="photo-slot">
         <img src="画像のURL1.jpg" alt="写真1">
       </div>
     </div>
 
-    <div class="section" style="--delay: 1s">
+    <div class="section">
       <p>
         得意なことは、デザインとプログラミングの融合。<br>
         黒い画面に、命を吹き込むようなコーディングが好きだ。<br>
@@ -125,20 +122,20 @@
       </p>
     </div>
 
-    <div class="section" style="--delay: 1.5s">
+    <div class="section">
       <div class="photo-slot">
         <img src="画像のURL2.jpg" alt="写真2">
       </div>
     </div>
 
-    <div class="section" style="--delay: 2s">
+    <div class="section">
       <p>
         この先どんな未来が待っていても、<br>
         ブレーキは踏まない。アクセル全開で駆け抜けていく。
       </p>
     </div>
 
-    <div class="section" style="--delay: 2.5s">
+    <div class="section">
       <div class="photo-slot">
         <img src="画像のURL3.jpg" alt="写真3">
       </div>
@@ -148,5 +145,22 @@
       "アクセルを踏み続けた者にしか、見えない景色がある。"
     </div>
   </div>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target); // 一度だけアニメーション
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
+
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
